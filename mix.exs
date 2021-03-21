@@ -10,7 +10,14 @@ defmodule BadKitty.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: [
+        gcp: [
+          include_executables_for: [:unix],
+          steps: [:assemble, :tar],
+          applications: [runtime_tools: :permanent]
+        ]
+      ]
     ]
   end
 
